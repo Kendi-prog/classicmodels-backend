@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 public class Customer {
     @Id
     @Column(name = "customerNumber", nullable = false)
-    private Integer id;
+    private Integer customerNumber;
 
     @Column(name = "customerName", nullable = false, length = 50)
     private String customerName;
@@ -50,7 +50,7 @@ public class Customer {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "salesRepEmployeeNumber")
-    @JsonIgnore
+//    @JsonIgnore
     private Employee salesRepEmployeeNumber;
 
     @Column(name = "creditLimit", precision = 10, scale = 2)

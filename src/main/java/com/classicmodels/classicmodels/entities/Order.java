@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class Order {
     @Id
     @Column(name = "orderNumber", nullable = false)
-    private Integer id;
+    private Integer orderNumber;
 
     @Column(name = "orderDate", nullable = false)
     private LocalDate orderDate;
@@ -35,6 +35,6 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "customerNumber", nullable = false)
 
-    private Customer customerNumber;
+    private Customer customer;
 
 }
