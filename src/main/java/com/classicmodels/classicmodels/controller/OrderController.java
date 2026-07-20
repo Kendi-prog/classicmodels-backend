@@ -25,5 +25,22 @@ public class OrderController {
     public Order getOrderById(@PathVariable Integer id) {
         return orderService.getOrderById(id);
     }
+
+    @PostMapping
+    public Order createOrder(@RequestBody Order order) {
+        return orderService.save(order);
+    }
+    @PutMapping("/{id}")
+    public Order updateOrder(@PathVariable Integer id,
+                             @RequestBody Order updatedOrder) {
+        return orderService.update(id, updatedOrder);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteOrder(@PathVariable Integer id) {
+        orderService.delete(id);
+    }
+
+
 }
 

@@ -24,5 +24,31 @@ public class OrderServiceImplementation implements OrderService {
     public Order getOrderById(Integer id) {
         return orderRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public Order save(Order order) {
+        return orderRepository.save(order);
+    }
+
+    @Override
+    public Order update(Integer id, Order updatedOrder) {
+        Order existingOrder = orderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+
+        existingOrder.setOrderDate(updatedOrder.getOrderDate());
+        existingOrder.setRequiredDate(updatedOrder.getRequiredDate());
+        existingOrder.setShippedDate(updatedOrder.getShippedDate());
+        existingOrder.setStatus(updatedOrder.getStatus());
+        existingOrder.setComments(updatedOrder.getComments());
+        existingOrder.setCustomer(updatedOrder.getCustomer());
+
+        return orderRepository.save(existingOrder);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        orderRepository.deleteById(id);
+    }
+
 }
 

@@ -5,6 +5,7 @@ import com.classicmodels.classicmodels.service.product.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.List;
 import java.util.Optional;
@@ -63,9 +64,15 @@ public class ProductController {
 
 
     @DeleteMapping("/{productCode}")
-    public ResponseEntity<Void> delete(@PathVariable String productCode) {
-        productService.deleteById(productCode);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> delete(@PathVariable String productCode) {
+        try {
+            productService.deleteById(productCode);
+            return ResponseEntity.ok("Product deleted successfully.");
+        } catch (DataIntegrityViolationException ex) {
+            return ResponseEntity.status(409)
+                    .body("Cannot delete product because it is used in existing orders.");
+        }
     }
+
 }
 
