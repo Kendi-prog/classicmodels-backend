@@ -2,6 +2,7 @@ package com.classicmodels.classicmodels.controller;
 
 import com.classicmodels.classicmodels.entities.Order;
 import com.classicmodels.classicmodels.service.order.OrderService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,8 +38,14 @@ public class OrderController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteOrder(@PathVariable Integer id) {
-        orderService.delete(id);
+    public ResponseEntity<?> deleteOrder(@PathVariable Integer id) {
+
+        try {
+            orderService.delete(id);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        }
     }
 
 

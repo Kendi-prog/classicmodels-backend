@@ -47,7 +47,13 @@ public class OrderServiceImplementation implements OrderService {
 
     @Override
     public void delete(Integer id) {
-        orderRepository.deleteById(id);
+        try {
+            orderRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException(
+                    "Cannot delete order because it has related order details."
+            );
+        }
     }
 
 }
