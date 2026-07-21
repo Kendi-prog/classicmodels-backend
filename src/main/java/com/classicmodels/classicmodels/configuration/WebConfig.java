@@ -16,7 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
         log.info("CorsMapping enabled");
 
         registry.addMapping("/api/**")
-                .allowedOriginPatterns("http://localhost:5173")
+                .allowedOriginPatterns("http://localhost:5173", "https://product-line-frontend.vercel.app/")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
