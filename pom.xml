@@ -12,7 +12,9 @@
     <artifactId>classicmodels</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>classicmodels</name>
-    <description>classicmodels</description>
+    <description>
+        REST API for the Classic Models Management System built with Spring Boot and MySQL.
+    </description>
     <url/>
     <licenses>
         <license/>
